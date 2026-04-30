@@ -15,6 +15,7 @@ const ProductSchema = z.object({
     name: z.string(),
     price: z.number(),
 }) //1行ずつチェック用
+type Product = z.infer<typeof ProductSchema>; //ここでは使わないが今後使用
 
 const main = async () => {
     const data = await fetchProducts(); //中身を取り出すためにawait
@@ -28,10 +29,14 @@ const main = async () => {
             .map(product => ProductSchema.safeParse(product))
             .filter(result => result.success)
             .map(result => result.data)
+        let totalPrice = 0;
 
-        validProduct.forEach(product =>
-            console.log(`${product.name} - ${product.price}`)
+        validProduct.forEach((product) =>{
+            console.log(`${product.name} - ${product.price}`);
+            totalPrice += product.price;
+        }
         )
+        console.log(`Total: ${totalPrice}`)
     }
 }
 
