@@ -23,6 +23,7 @@ const main = async () => {
         return;
     } else {
         // "1行"ずつ型が正しいか正しくないかチェックする必要
+        // flatMapの方法もあるが、読みやすいデバックしやすいとか考慮してこちら
         const validUsers = data
             .map(user => isUser.safeParse(user))
             .filter(result => result.success)
