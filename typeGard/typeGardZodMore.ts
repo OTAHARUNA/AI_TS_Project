@@ -24,20 +24,20 @@ const main = async () => {
     if (!Array.isArray(data)) {
         console.log("Invalid Data");
         return;
-    } else {
-        const validProduct = data
-            .map(product => ProductSchema.safeParse(product))
-            .filter(result => result.success)
-            .map(result => result.data)
-        let totalPrice = 0;
-
-        validProduct.forEach((product) =>{
-            console.log(`${product.name} - ${product.price}`);
-            totalPrice += product.price;
-        }
-        )
-        console.log(`Total: ${totalPrice}`)
     }
+
+    const validProducts = data
+        .map(product => ProductSchema.safeParse(product))
+        .filter(result => result.success)
+        .map(result => result.data)
+    let totalPrice = 0;
+
+    validProducts.forEach((product) => {
+        console.log(`${product.name} - ${product.price}`);
+        totalPrice += product.price;
+    }
+    )
+    console.log(`Total: ${totalPrice}`)
 }
 
 main();
