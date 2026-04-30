@@ -5,29 +5,30 @@ const fetchUsers = async (): Promise<unknown> => {
         { username: "C" }        // 壊れてる
     ];
 };
-type User = {
-    name: string,
-    age: number
-}
-// isUserは中身いじっていない
-function isUser(data : unknown) : data is User {
-    if (typeof data !== "object" || data === null ||
-        !("name" in data) || !("age" in data)
-    ) {
-        return false
-    }
-    return typeof data.name === "string" && typeof data.age === "number"
-}
+
+// *****処理*****
+import { z } from "zod";
+
+const isUser = z.object({
+    name: z.string(),
+    age: z.number()
+})
+
+
 const main = async () => {
     const data = await fetchUsers();
 
-    // やり方わからなくて聞いた
-    if (!Array.isArray(data)) { //unknownでないことのチェック
+    if (!Array.isArray(data)) {
         console.log("Invalid data");
         return;
     } else {
-        const rightData = data.filter(isUser);
-        rightData.forEach(user =>
+        // "1行"ずつ型が正しいか正しくないかチェックする必要
+        const validUsers = data
+            .map(user => isUser.safeParse(user))
+            .filter(result => result.success)
+            .map(result => result.data)
+
+        validUsers.forEach(user =>
             console.log(`${user.name} (${user.age})`)
         )
     }
