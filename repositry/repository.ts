@@ -27,9 +27,12 @@ class Repository<T extends {id:number}> {
         };
     }
     // 削除
-    async delete(id: number) {
+    async delete(id: number): Promise<boolean> {
+        const before = this.items.length;
         this.items = this.items.filter(
             item => item.id !== id
         )
+
+        return this.items.length > before;
     }
 }
