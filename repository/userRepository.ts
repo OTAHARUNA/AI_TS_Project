@@ -1,4 +1,6 @@
-class Repository<T extends {id:number}> {
+export class UserRepository<T extends { id: number }> {
+    // Repository: DB操作
+
     private items: T[] = [];
 
     async add(item: T) {
