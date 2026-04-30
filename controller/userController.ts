@@ -8,7 +8,11 @@ class UserController{
 
     async create(req: any, res: any) {
         const parsed = UserSchema.safeParse(req.body);
-        const user = await UserService.createUser(parsed.data);
+        if (!parsed.success) {
+            return res.status(400).json(parsed.error)
+        }
+        const user = await this.service.createUser(parsed.data);
+
         res.json(user);
     }
 }

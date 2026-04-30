@@ -11,9 +11,8 @@ export class UserService {
         if (user.age < 18) throw Error("未成年不可");
         // emailは空禁止
         if (user.email === "" || user.email === null) throw Error("email空禁止");
-        this.repo.add(user);
-        // ここは、複数チェックで生き残ったやつを管理している配列だけ返すとかにしたほうがいいと思う
-        return user;
+
+        return this.repo.add(user); //repositoryが保存結果返してくれる
     }
 
 }
