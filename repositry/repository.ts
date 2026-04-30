@@ -26,4 +26,10 @@ class Repository<T extends {id:number}> {
             ...item
         };
     }
+    // 削除
+    async delete(id: number) {
+        this.items = this.items.filter(
+            item => item.id !== id
+        )
+    }
 }
