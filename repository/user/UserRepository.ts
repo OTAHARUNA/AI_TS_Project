@@ -1,4 +1,4 @@
-import { User } from "../../controller/userSchema"
+import { User } from "../../controller/UserSchema"
 import { IUserRepository } from "./IUserRepository"
 
 export class UserRepository implements IUserRepository {

@@ -1,5 +1,5 @@
-import { UserService } from "../service/userService";
-import { UserSchema,User } from "./userSchema";
+import { UserService } from "../service/UserService";
+import { UserSchema,User } from "./UserSchema";
 
 class UserController{
     // Controller: 入力受付

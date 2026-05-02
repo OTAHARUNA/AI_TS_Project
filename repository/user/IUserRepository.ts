@@ -1,4 +1,4 @@
-import { User } from "../../controller/userSchema";
+import { User } from "../../controller/UserSchema";
 
 export interface IUserRepository {
     add(user: User): Promise<User>;
