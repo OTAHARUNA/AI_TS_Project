@@ -1,10 +1,10 @@
-import { UserRepository } from "../repository/userRepository";
+import { IUserRepository } from "../repository/user/IUserRepository";
 import { User } from "../controller/userSchema";
 
 export class UserService {
     // service: ルール判断
 
-    constructor(private repo: UserRepository) { }
+    constructor(private repo: IUserRepository) { }
 
     async createUser(user: User) {
         // age < 18 は登録不可
