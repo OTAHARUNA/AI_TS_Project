@@ -1,7 +1,7 @@
 import { UserService } from "../service/UserService";
-import { UserSchema,User } from "./UserSchema";
+import { UserSchema } from "./UserSchema";
 
-class UserController{
+export class UserController{
     // Controller: 入力受付
 
     constructor(private service: UserService) { };

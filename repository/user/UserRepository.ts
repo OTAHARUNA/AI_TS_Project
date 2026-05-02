@@ -1,4 +1,4 @@
-import { User } from "../../controller/UserSchema"
+import { User } from "../../types/User"
 import { IUserRepository } from "./IUserRepository"
 
 export class UserRepository implements IUserRepository {
@@ -16,7 +16,7 @@ export class UserRepository implements IUserRepository {
     }
     // 部分更新
     async update(id: number, user: Partial<User>) {
-        const index = this.items.findIndex(id => id === id);
+        const index = this.items.findIndex(item => item.id === id);
         if (index === -1) return;
 
         this.items[index] = {
@@ -25,6 +25,6 @@ export class UserRepository implements IUserRepository {
         }
     }
     async delete(id: number) {
-        this.items = this.items.filter(id => id !== id);
+        this.items = this.items.filter(item => item.id !== id);
     }
 }

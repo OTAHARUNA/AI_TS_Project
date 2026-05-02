@@ -1,5 +1,5 @@
 import { IUserRepository } from "../repository/user/IUserRepository";
-import { User } from "../controller/UserSchema";
+import { User } from "../types/User";
 
 export class UserService {
     // service: ルール判断
